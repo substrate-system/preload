@@ -116,11 +116,11 @@ function getHref (localPath:string):string {
 This needs a `.env` file in the `test` directory.
 
 ```sh
-cp .env.example ./test/.env
+cp ./test/.env.example ./test/.env
 ```
 
 ## See also
 
-* [rel=preload](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/rel/preload)
+* [MDN docs rel=preload](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/rel/preload)
 * [Using responsive images in HTML](https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images)
 * [Preloading responsive images](https://medium.com/@akashjha9041/preloading-responsive-images-3aecf114968e)
