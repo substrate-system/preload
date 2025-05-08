@@ -1,6 +1,6 @@
 {
   "name": "@substrate-system/preload",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "description": "Link tag with preload attribute",
   "directories": {
@@ -31,8 +31,7 @@
     "postversion": "git push --follow-tags && npm publish",
     "prepublishOnly": "npm run build"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@cloudinary/url-gen": "^1.21.0",
     "@substrate-system/debug": "^0.7.12",
