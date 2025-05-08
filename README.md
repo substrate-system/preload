@@ -30,7 +30,7 @@ Create a `link` tag with a `preload` attribute, for images.
 
 - [Install](#install)
 - [API](#api)
-  * [`preload`](#preload)
+  * [`preload(filepath, srcset, href, sizes)`](#preloadfilepath-srcset-href-sizes)
   * [ESM](#esm)
   * [pre-built JS](#pre-built-js)
 - [Example](#example)

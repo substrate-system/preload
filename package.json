@@ -1,6 +1,6 @@
 {
   "name": "@substrate-system/preload",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "description": "Link tag with preload attribute",
   "directories": {
