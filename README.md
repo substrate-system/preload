@@ -57,7 +57,7 @@ If they are functions, they will be called with the given `filepath`.
 
 ```ts
 function preload (
-    filepath:string,
+    filepath:string,  // the file path, or filename in Cloudinary
     srcset:((localPath:string)=>string)|string,  // used in `imagesrcset`
     href:string|((localPath:string)=>string),  // full size, original image
     sizes:string = '100vw',
