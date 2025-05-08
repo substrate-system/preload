@@ -5,7 +5,7 @@
 [![semantic versioning](https://img.shields.io/badge/semver-2.0.0-blue?logo=semver&style=flat-square)](https://semver.org/)
 [![Common Changelog](https://nichoth.github.io/badge/common-changelog.svg)](./CHANGELOG.md)
 [![install size](https://flat.badgen.net/packagephobia/install/@substrate-system/preload)](https://packagephobia.com/result?p=@substrate-system/preload)
-[![dependencies](https://img.shields.io/badge/dependencies-zero-brightgreen.svg?kill_cache=1&style=flat-square)](package.json)
+[![dependencies](https://img.shields.io/badge/dependencies-zero-brightgreen.svg?style=flat-square)](package.json)
 [![license](https://img.shields.io/badge/license-Polyform_Small_Business-249fbc?style=flat-square)](LICENSE)
 
 
@@ -50,7 +50,7 @@ npm i -S @substrate-system/preload
 ## API
 This exposes ESM via [package.json `exports` field](https://nodejs.org/api/packages.html#exports).
 
-### `preload`
+### `preload(filepath, srcset, href, sizes)`
 
 Take either a string or a function for `srcset` and `href` attributes.
 If they are functions, they will be called with the given `filepath`.
