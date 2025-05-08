@@ -7,9 +7,6 @@
     "doc": "docs",
     "test": "test"
   },
-  "dependencies": {
-  },
-  "private": true,
   "main": "dist/index.js",
   "files": [
     "./dist/*"
@@ -33,6 +30,8 @@
     "version": "npm run toc && auto-changelog -p --template keepachangelog --breaking-pattern 'BREAKING CHANGE:' && git add CHANGELOG.md README.md",
     "postversion": "git push --follow-tags && npm publish",
     "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
   },
   "devDependencies": {
     "@cloudinary/url-gen": "^1.21.0",
