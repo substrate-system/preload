@@ -94,7 +94,12 @@ import { preload } from '@substrate-system/preload'
 import { defaultSrcset } from '@substrate-system/preload/cloudinary'
 
 // can pass in functions for `srcset` and `href` arguments
-const tag:string = preload('my-picture.jpg', getSrcset, getHref)
+const tag:string = preload(
+  'my-picture.jpg',
+  getSrcset,
+  getHref,
+  '(max-width: 700px) 100vw, 50vw'  // sizes
+)
 
 // use Cloudinary
 const cld = new Cloudinary({
