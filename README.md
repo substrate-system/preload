@@ -1,32 +1,126 @@
-# template ts
-![tests](https://github.com/bicycle-codes/util/actions/workflows/nodejs.yml/badge.svg)
-[![types](https://img.shields.io/npm/types/@bicycle-codes/util?style=flat-square)](README.md)
-[![dependencies](https://img.shields.io/badge/dependencies-zero-brightgreen.svg?style=flat-square)](package.json)
+# preload
+![tests](https://github.com/substrate-system/preload/actions/workflows/nodejs.yml/badge.svg)
+[![types](https://img.shields.io/npm/types/@substrate-system/preload?style=flat-square)](README.md)
+[![module](https://img.shields.io/badge/module-ESM-blue?style=flat-square)](README.md)
 [![semantic versioning](https://img.shields.io/badge/semver-2.0.0-blue?logo=semver&style=flat-square)](https://semver.org/)
-[![license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
+[![Common Changelog](https://nichoth.github.io/badge/common-changelog.svg)](./CHANGELOG.md)
+[![install size](https://flat.badgen.net/packagephobia/install/@substrate-system/preload)](https://packagephobia.com/result?p=@substrate-system/preload)
+[![dependencies](https://img.shields.io/badge/dependencies-zero-brightgreen.svg?style=flat-square)](package.json)
+[![license](https://img.shields.io/badge/license-Polyform_Small_Business-249fbc?style=flat-square)](LICENSE)
 
-A template for typescript *dependency* modules that run in node. See [template-ts-browser](https://github.com/nichoth/template-ts-browser) for the same thing but targeting a browser environment.
 
+Create a `link` tag with a `preload` attribute, for images.
+
+```html
+<link
+  rel="preload"
+  as="image"
+  href="wolf.jpg"
+  imagesrcset="wolf_400px.jpg 400w, wolf_800px.jpg 800w, wolf_1600px.jpg 1600w"
+  imagesizes="50vw"
 >
-> [!IMPORTANT]  
-> This builds to **ESM only**.
->
+```
 
-## use
+> To preload responsive images, new attributes were recently added to the
+> `<link>` element: `imagesrcset` and `imagesizes`
 
-1. Use the template button in github. Or clone this then `rm -rf .git && git init`.
-2. `npm i && npm init`.
-3. Edit `README.md` -- change the CI badge URL + rewrite docs
-5. Edit the source code in `src/index.ts`, edit tests in `test`
+<details><summary><h2>Contents</h2></summary>
 
-## featuring
+<!-- toc -->
 
-* compile the source to both ESM and CJS format, and put compiled files in `dist`.
-* ignore `dist` and `*.js` in git, but don't ignore them in npm. That way we don't commit any compiled code to git, but it is available to consumers.
-* use npm's `prepublishOnly` hook to compile the code before publishing to npm.
-* use `exports` field in `package.json` to make sure the right format is used by consumers.
-* `preversion` npm hook -- lint via `standardx`.
-* `postversion` npm hook -- `git push && git push --tags && npm publish`
-* eslint via [standardx](https://www.npmjs.com/package/standardx) -- `npm run lint`
-* compile tests and run in a node environment
-* CI via github actions
+- [Install](#install)
+- [API](#api)
+  * [`preload`](#preload)
+  * [ESM](#esm)
+  * [pre-built JS](#pre-built-js)
+- [Example](#example)
+- [develop](#develop)
+- [See also](#see-also)
+
+<!-- tocstop -->
+
+</details>
+
+## Install
+
+```sh
+npm i -S @substrate-system/preload
+```
+
+## API
+This exposes ESM via [package.json `exports` field](https://nodejs.org/api/packages.html#exports).
+
+### `preload`
+
+Take either a string or a function for `srcset` and `href` attributes.
+If they are functions, they will be called with the given `filepath`.
+
+```ts
+function preload (
+    filepath:string,
+    srcset:((localPath:string)=>string)|string,  // used in `imagesrcset`
+    href:string|((localPath:string)=>string),  // full size, original image
+    sizes:string = '100vw',
+):string
+```
+
+### ESM
+```js
+import { preload } from '@substrate-system/preload'
+```
+
+### pre-built JS
+This package exposes minified JS files too. Copy them to a location that is
+accessible to your web server, then link to them in HTML.
+
+#### copy
+```sh
+cp ./node_modules/@substrate-system/preload/dist/index.min.js ./public/preload.min.js
+```
+
+#### HTML
+```html
+<script type="module" src="./preload.min.js"></script>
+```
+
+## Example
+
+This package includes some utilities for working with [Cloudinary](https://cloudinary.com/)
+as image host.
+
+```js
+import { Cloudinary } from '@cloudinary/url-gen'
+import { preload } from '@substrate-system/preload'
+import { defaultSrcset } from '@substrate-system/preload/cloudinary'
+
+// can pass in functions for `srcset` and `href` arguments
+const tag:string = preload('my-picture.jpg', getSrcset, getHref)
+
+// use Cloudinary
+const cld = new Cloudinary({
+    cloud: { cloudName: CLOUD_NAME },
+    url: { secure: true }
+})
+
+function getSrcset (localPath:string):string {
+    return defaultSrcset(cld, localPath)
+}
+
+function getHref (localPath:string):string {
+    return cld.image(localPath).toURL()
+}
+```
+
+## develop
+
+This needs a `.env` file in the `test` directory.
+
+```sh
+cp .env.example ./test/.env
+```
+
+## See also
+
+* [rel=preload](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/rel/preload)
+* [Using responsive images in HTML](https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images)
+* [Preloading responsive images](https://medium.com/@akashjha9041/preloading-responsive-images-3aecf114968e)
