@@ -1,7 +1,15 @@
 {
-  "type": "module",
-  "private": true,
+  "name": "@substrate-system/preload",
   "version": "0.0.0",
+  "type": "module",
+  "description": "Link tag with preload attribute",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "dependencies": {
+  },
+  "private": true,
   "main": "dist/index.js",
   "files": [
     "./dist/*"
@@ -44,5 +52,20 @@
     "typescript": "^5.7.2"
   },
   "license": "MIT",
-  "author": "nichoth <nichoth@gmail.com> (https://nichoth.com)"
+  "author": "nichoth <nichoth@gmail.com> (https://nichoth.com)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/substrate-system/preload.git"
+  },
+  "keywords": [
+    "link",
+    "preload",
+    "image",
+    "html"
+  ],
+  "types": "./dist/index.d.ts",
+  "bugs": {
+    "url": "https://github.com/substrate-system/preload/issues"
+  },
+  "homepage": "https://github.com/substrate-system/preload#readme"
 }
