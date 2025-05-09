@@ -85,8 +85,8 @@ cp ./node_modules/@substrate-system/preload/dist/index.min.js ./public/preload.m
 
 ## Example
 
-This package includes some utilities for working with [Cloudinary](https://cloudinary.com/)
-as image host.
+This package includes some utilities for working
+with [Cloudinary](https://cloudinary.com/).
 
 ```js
 import { Cloudinary } from '@cloudinary/url-gen'
