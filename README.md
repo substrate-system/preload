@@ -52,7 +52,7 @@ This exposes ESM via [package.json `exports` field](https://nodejs.org/api/packa
 
 ### `preload(filepath, srcset, href, sizes)`
 
-Take either a string or a function for `srcset` and `href` attributes.
+Takes either a string or a function for `srcset` and `href` attributes.
 If they are functions, they will be called with the given `filepath`.
 
 ```ts
