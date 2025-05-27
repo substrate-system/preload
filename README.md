@@ -29,11 +29,13 @@ Create a `link` tag with a `preload` attribute, for images.
 <!-- toc -->
 
 - [Install](#install)
+- [Example](#example)
 - [API](#api)
-  * [`preload(filepath, srcset, href, sizes)`](#preloadfilepath-srcset-href-sizes)
+  * [`preload(path, srcset, href, sizes)`](#preloadpath-srcset-href-sizes)
+  * [Cloudinary](#cloudinary)
+- [Modules](#modules)
   * [ESM](#esm)
   * [pre-built JS](#pre-built-js)
-- [Example](#example)
 - [develop](#develop)
 - [See also](#see-also)
 
