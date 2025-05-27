@@ -47,42 +47,6 @@ Create a `link` tag with a `preload` attribute, for images.
 npm i -S @substrate-system/preload
 ```
 
-## API
-This exposes ESM via [package.json `exports` field](https://nodejs.org/api/packages.html#exports).
-
-### `preload(filepath, srcset, href, sizes)`
-
-Takes either a string or a function for `srcset` and `href` attributes.
-If they are functions, they will be called with the given `filepath`.
-
-```ts
-function preload (
-    filepath:string,  // the file path, or filename in Cloudinary
-    srcset:((localPath:string)=>string)|string,  // used in `imagesrcset`
-    href:string|((localPath:string)=>string),  // full size, original image
-    sizes:string = '100vw',
-):string
-```
-
-### ESM
-```js
-import { preload } from '@substrate-system/preload'
-```
-
-### pre-built JS
-This package exposes minified JS files too. Copy them to a location that is
-accessible to your web server, then link to them in HTML.
-
-#### copy
-```sh
-cp ./node_modules/@substrate-system/preload/dist/index.min.js ./public/preload.min.js
-```
-
-#### HTML
-```html
-<script type="module" src="./preload.min.js"></script>
-```
-
 ## Example
 
 This package includes some utilities for working
@@ -114,6 +78,70 @@ function getSrcset (localPath:string):string {
 function getHref (localPath:string):string {
     return cld.image(localPath).toURL()
 }
+```
+
+## API
+
+### `preload(path, srcset, href, sizes)`
+
+Takes either a string or a function for `srcset` and `href` attributes.
+If they are functions, they will be called with the given `filepath`.
+
+```ts
+function preload (
+    filepath:string,
+    srcset:((localPath:string)=>string)|string,
+    href:string|((localPath:string)=>string),
+    sizes:string = '100vw',
+):string
+```
+
+### Cloudinary
+
+```js
+import {
+  defaultSrcset,
+  getSrcset
+} from '@substrate-system/preload/cloudinary'
+```
+
+#### `defaultSrcset(cld, filename)`
+
+```ts
+function defaultSrcset (cld:Cloudinary, filename:string):string {
+```
+
+#### `getSrcset(cld, filename, widths)`
+
+```ts
+function getSrcset (
+  cld:Cloudinary,
+  filename:string,
+  widths:number[]
+):string[]
+```
+
+
+## Modules
+This exposes ESM via [package.json `exports` field](https://nodejs.org/api/packages.html#exports).
+
+### ESM
+```js
+import { preload } from '@substrate-system/preload'
+```
+
+### pre-built JS
+This package exposes minified JS files too. Copy them to a location that is
+accessible to your web server, then link to them in HTML.
+
+#### copy
+```sh
+cp ./node_modules/@substrate-system/preload/dist/index.min.js ./public/preload.min.js
+```
+
+#### HTML
+```html
+<script type="module" src="./preload.min.js"></script>
 ```
 
 ## develop
